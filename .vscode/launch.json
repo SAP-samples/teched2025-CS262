@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run teched2025-cs262-itsmFrontend",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/itsmFrontend/index.html"
+      ],
+      "cwd": "${workspaceFolder}/itsmFrontend/build",
+      "env": {
+        "PORT": "6004",
+        "run.config": "{\"handlerId\":\"html5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/teched2025-cs262/itsmFrontend\"}"
+      },
+      "envFile": "${workspaceFolder}/itsmFrontend/.env1",
+      "preLaunchTask": "Run teched2025-cs262"
+    }
+  ]
+}

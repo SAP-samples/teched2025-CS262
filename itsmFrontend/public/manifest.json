@@ -1,0 +1,11 @@
+{
+  "sap.app": {
+    "id": "itsmFrontend",
+    "applicationVersion": {
+      "version": "1.1.0"
+    }
+  },
+  "sap.cloud": {
+    "service": "itsmFrontend"
+  }
+}

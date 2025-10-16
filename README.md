@@ -1,37 +1,40 @@
-# Session ID - Session Title
+# CS262 - Supercharge your stack: Embed SAP’s intelligent support capabilities
 
 ## Description
 
-This repository contains the material for the SAP TechEd 2025 session called Session ID - Session Title.  
+This repository contains the material for the SAP TechEd 2025 session called CS262 - Supercharge your stack: Embed SAP’s intelligent support capabilities.  
 
 ## Overview
+This Hands-On Workshop walks you through embedding SAP Cloud ALM self-service support capabilities directly into an ITSM-style application.
 
-This session introduces attendees to...
+You will progressively move from raw API exploration to an integrated, guided support experience: discovering how an issue description yields AI-ranked SAP knowledge, wiring those recommendations into a front‑end workflow, refining relevance with optional power-user context and filtering, and finally generating a concise, cited resolution summary via generative AI.
+
+Across the exercises you become comfortable invoking the Solution Recommendation API, interpreting and presenting its output, enriching queries with additional signals, and layering a generative answer on top for faster issue triage.
+
+The result is a practical blueprint for surfacing up-to-date SAP knowledge and actionable guidance inside your own support processes, empowering users to self-service earlier and experts to drill down when needed.
 
 ## Requirements
 
 The requirements to follow the exercises in this repository are...
 
 ## Exercises
+Be aware that some of the exercises are dependent on each other and must be completed in the sequence provided below.
 
-Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
+- [Getting Started](exercises/ex0/README.md)
+- [Exercise 01 - Explore the support self-service capabilities via SAP Cloud ALM APIs](exercises/ex1/README.md)
+- [Exercise 02 - Integrate SAP knowledge via the SAP Cloud ALM APIs](exercises/ex2/README.md)
+- [Exercise 03 - Optimize the use of SAP knowledge recommendations](exercises/ex3/README.md)
+- [Exercise 04 - Generate actionable SAP knowledge summaries with Generative AI](exercises/ex4/README.md)
 
-- [Getting Started](exercises/ex0/)
-- [Exercise 1 - First Exercise Description](exercises/ex1/)
-    - [Exercise 1.1 - Exercise 1 Sub Exercise 1 Description](exercises/ex1#exercise-11-sub-exercise-1-description)
-    - [Exercise 1.2 - Exercise 1 Sub Exercise 2 Description](exercises/ex1#exercise-12-sub-exercise-2-description)
-- [Exercise 2 - Second Exercise Description](exercises/ex2/)
-    - [Exercise 2.1 - Exercise 2 Sub Exercise 1 Description](exercises/ex2#exercise-21-sub-exercise-1-description)
-    - [Exercise 2.2 - Exercise 2 Sub Exercise 2 Description](exercises/ex2#exercise-22-sub-exercise-2-description)
+> [!NOTE]
+> For this Hands-on Workshop you are provided with a subaccount on SAP BTP. The subaccount is only available for the duration of this Hands-on Workshop.
 
-  
-**OR** Link to the Tutorial Navigator for example...
+:sparkles: Have fun with the exercises!
 
-Start the exercises [here](https://developers.sap.com/tutorials/abap-environment-trial-onboarding.html).
+:speech_balloon: If you have questions, reach out to the instructors at anytime throughout the session.
 
-**IMPORTANT**
-
-Your repo must contain the .reuse and LICENSES folder and the License section below. DO NOT REMOVE the section or folders/files. Also, remove all unused template assets(images, folders, etc) from the exercises folder. 
+## Frequently Asked Questions
+You can find a list of frequently asked questions in the [Frequently Asked Questions Document](./FAQ.md).
 
 ## Contributing
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.

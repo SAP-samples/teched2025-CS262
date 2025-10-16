@@ -1,44 +1,109 @@
-# Exercise 1 - Exercise 1 Description
+# Exercise 01 - Explore the support self-service capabilities via SAP Cloud ALM APIs <!-- omit in toc -->
 
-In this exercise, we will create...
+_Estimated Time: **20 min**_
 
-## Exercise 1.1 Sub Exercise 1 Description
+In this exercise, you'll explore the SAP Cloud ALM Solution Recommendation API in a guided Jupyter notebook and experience how an issue description can surface AI-driven SAP knowledge for faster resolution.
 
-After completing these steps you will have created...
+## Table of Contents <!-- omit in toc -->
 
-1. Click here.
-<br>![](/exercises/ex1/images/01_01_0010.png)
+- [:open\_book: Context: SAP Cloud ALM Support Self-Service](#open_book-context-sap-cloud-alm-support-self-service)
+- [Try-out the Solution Recommendation API](#try-out-the-solution-recommendation-api)
+- [Summary](#summary)
+- [Further reading](#further-reading)
 
-2.	Insert this line of code.
-```abap
-response->set_text( |Hello World! | ). 
-```
+## :open_book: Context: SAP Cloud ALM Support Self-Service
+- SAP Cloud ALM Self-Service leverages AI to automatically suggest the most relevant knowledge resources when a user describes an issue.
+- The system analyzes the described problem, then uses semantic search and ranking models to identify and prioritize useful content from SAP's extensive knowledge base.
 
+![AI-Powered Self-Service Recommendations](./images/ai-self-service-recommendations.png)
 
+#### Key Features  <!-- omit in toc -->
+:robot: **AI-driven relevance**: Uses state-of-the-art AI technology to deliver the latest SAP knowledge content to users.
 
-## Exercise 1.2 Sub Exercise 2 Description
+:globe_with_meridians: **Comprehensive coverage**: Recommends across SAP Notes, Knowledge Base Articles (KBA), Help Portal guides, and SAP Community content.
 
-After completing these steps you will have...
+:zap: **Faster resolution**: Empowers users to independently resolve issues anytime, with 24/7 availability.
 
-1.	Enter this code.
-```abap
-DATA(lt_params) = request->get_form_fields(  ).
-READ TABLE lt_params REFERENCE INTO DATA(lr_params) WITH KEY name = 'cmd'.
-  IF sy-subrc <> 0.
-    response->set_status( i_code = 400
-                     i_reason = 'Bad request').
-    RETURN.
-  ENDIF.
+:repeat: **Continuous learning**: Improves recommendations over time by learning from resolved tickets and user interactions.
 
-```
+## Try-out the Solution Recommendation API
 
-2.	Click here.
-<br>![](/exercises/ex1/images/01_02_0010.png)
+The Solution Recommendation self-service capability that has been introduced above is accessible via the following Cloud ALM API:
 
+- **Endpoint:** `/http/supportcases/recommendations/solutions`
+- **Method:** `POST`
+- **Required input fields:**
+  - One of `subject` or `description`
+- **Response:** List of SAP knowledge document recommendations
+
+> [!TIP]
+> For more details, please refer to the Cloud ALM API [documentation](https://help.sap.com/docs/cloud-alm/apis/itsm-api?locale=en-US) and [API reference](https://api.sap.com/api/CALM_ITSM/path/postSelfServiceSolutions).
+
+:point_right: For the purpose of this workshop, we have already setup the Cloud ALM APIs within the BTP subaccount. These are accesible to you via the BTP destination named **Cloud_ALM_API**.
+
+![BTP destination for SAP Cloud ALM APIs](images/01_01.png)
+
+:point_right: To see the Solution Recommendation API in action, head over to your SAP Business Application Studio Dev Space and open the Python Jupyter notebook at `exercises/ex1/assets/ex1_api_exploration.ipynb`.
+
+<p>
+  <img src="images/01_02.png" alt="Cloud ALM API exploration notebook" width="300"/>
+</p>
+
+> [!TIP]
+> To run a Jupyter notebook cell either click on the :arrow_forward: button besides the cell or press *Shift+Enter* while the cell is selected.
+
+:point_right: After running the cells to install and import the required libraries, provide values for the `subject` and `description` input parameters and run the cells to perform the API call.
+
+> [!TIP]
+> To start with you can try-out the API with the following examples.
+> <details>
+> <summary>📝  Example 1</summary>
+> </br>
+> 
+> - **Subject:** API for form launch
+> - **Description:** In SuccessFactors system, we wanted to autolaunch the PM forms using CPI. So, just wanted to check if it is possible to autolaunch the form using CPI. If yes, kindly share the api for the same.
+> - **Component:** LOD-DF-INT-CON
+> - **Additional information:** Got error 403 when creating a form using OData API function import and seems we do not have permission to create performance review form for subject id. Got 500 error when launching forms via OData API.
+> 
+> :bulb: **Relevant knowledge document**: 3022523
+> </details>
+>
+> <details>
+> <summary>📝  Example 2</summary>
+> </br>
+> 
+> - **Subject:** Not able to start on secondary node
+> - **Description:** Database is not accessible on secondary node, we have tried to restart the database, but we could not, and we have observed one of the file missing datavolume_0000.dat. We have already requested the operating system team to restore the files from previous snapshots, but we are still not able to start the database.
+> - **Component:** HAN-DB-ENG
+> 
+> :bulb: **Relevant knowledge document**: 3203165
+> </details>
+>
+> <details>
+> <summary>📝  Example 3</summary>
+> </br>
+> 
+> - **Subject:** Job failure as IBP system seems not reachable
+> - **Description:** In the last two weeks we faced two times an issue with job cancellation. The jobs have been triggered out of the IBP system. In both cases it seems the IBP production system was not reachable by the interface Cloud Integration for Data Services. In both cases the issue was temporary as the interface was working again after some point of time. The error message comes from dataflow hgr_stock_quality.
+> - **Component:** LOD-HCI-DS-AGNT
+> - **Additional information:** Tasks fail suddenly with error rfc_communication_failure ssslrc_conn_closed remote peer has closed the network connection when testing connection of IBP datastore SAP Cloud Integration for Data Services.
+> 
+> :bulb: **Relevant knowledge document**: 3428965, 3349929
+> </details>
+
+:point_right: Run the cell to inspect the response with the suggested SAP knowledge content and the key returned fields for each knowledge document.
+
+:point_right: **[OPTIONAL]** Experiment with your own issue descriptions and explore the suggested SAP knowledge content.
 
 ## Summary
+In this exercise you used the SAP Cloud ALM Solution Recommendation API to retrieve a ranked list of SAP knowledge (Knowledge Base Articles, Notes, Help Portal, Community) based on your search parameters. You explored sample inputs in a Jupyter notebook, inspected the suggested SAP knowledge content and observed how different problem descriptions influence results.
 
-You've now ...
+You should now be comfortable invoking the Solution Recommendation API, interpreting its output, and preparing to build a UI that consumes these recommendations in subsequent exercises.
 
-Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
+## Further reading
 
+- [SAP Cloud ALM APIs - Help Portal (Documentation)](https://help.sap.com/docs/cloud-alm/apis/itsm-api?locale=en-US)
+
+---
+
+[Next exercise](../ex2/README.md)
