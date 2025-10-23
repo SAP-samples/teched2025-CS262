@@ -15,10 +15,15 @@ In this exercise, you'll level up the basic recommendations by introducing optio
 
 Besides the minimal required input parameters implemented in [Exercise 02](../ex2/README.md), the Solution Recommendation API additionally exposes *optional* fields to further specify the query and provide tailored SAP knowledge for instance to power-users.
 
+The below modifications will lead to a user interface that looks like this:
+
+![Exercise 03 - Additional parameters UI](images/03_01.png)
+
 :point_right: Enhance the application by allowing users to optionally supply an **SAP software component** and **detailed steps to reproduce** related to the occurring problem.
 
-- Introduce an advanced section in `src/components/DetailsForm.jsx` to collect the users' input for the two new optional fields.
+- Introduce an advanced section in `src/components/DetailsForm.jsx` to collect the users' input for the two new optional fields. Insert the code below the previously added form fields at the place marked by `{/* EXERCISE 03 - ADD ADVANCED SECTION HERE */}`.
 ```javascript
+{/* EXERCISE 03 - ADD ADVANCED SECTION HERE */}
 {/* Advanced Section */}
 <div className="border rounded-lg mt-6">
   <button
@@ -57,6 +62,7 @@ Besides the minimal required input parameters implemented in [Exercise 02](../ex
   )}
 </div>
 ```
+
 - Adapt the `handleFieldBlur()` function in `src/components/DetailsForm.jsx` to forward the field values to the API call.
 ```javascript
 function handleFieldBlur() {
@@ -88,7 +94,7 @@ function handleFieldBlur() {
 }
 ```
 
-- Finally, call the Solution Recommendation API in `src/api/index.js` with the two additional input parameters.
+- Finally, call the Solution Recommendation API in `src/api/index.js` with the two additional input parameters. Add the `component` and `stepsToReproduce` to the *function signature* and *payload variable*.
 ```javascript
 export async function searchSolutions(subject, description, component, stepsToReproduce) {
   const payload = { subject, description, component, stepsToReproduce };
@@ -113,11 +119,13 @@ export async function searchSolutions(subject, description, component, stepsToRe
 > :bulb: **Relevant knowledge document**: 3610362
 > </details>
 
-#TODO ADD SCREENSHOT
-
 ## Filter the recommendations based on specific business needs
 
 The Solution Recommendation API provides for each suggested SAP knowledge document various metadata fields, which can be leveraged to filter the documents based on specific business needs.
+
+By the end of this step, your interface with the filter feature will look like this:
+
+![Exercise 03 - Filter UI](images/03_02.png)
 
 #### Filter by Document Type  <!-- omit in toc -->
 The currently available SAP knowledge document types are:
@@ -126,7 +134,7 @@ The currently available SAP knowledge document types are:
 - `help`: SAP Help Portal Documentation
 - `community`: SAP Community content
 
-:point_right: Implement the filtering logic for the incoming suggestions in `src/components/DetailsForm.jsx`.
+:point_right: Implement the filtering logic for the incoming suggestions in `src/components/DetailsForm.jsx` inside the respective functions `getAvailableDocumentTypes()` and `filterSuggestions()`.
 ```javascript
 // Filtering logic
 function getAvailableDocumentTypes() {
@@ -143,33 +151,37 @@ function filterSuggestions() {
 }
 ```
 
-:point_right: Implement the filtering UI in `src/components/TypeFilter.jsx` by rendering a button for each document type available in the incoming suggestions.
+:point_right: Implement the filtering UI in `src/components/TypeFilter.jsx` by rendering a button for each document type available in the incoming suggestions. Add the code where indicated by `{/*  EXERCISE 03 - ADD TYPE FILTER UI HERE */}`.
 ```javascript
-<div className="mb-4 flex flex-wrap gap-2 items-center mt-2">
-    <span className="font-medium text-gray-700">Filter by Type:</span>
+{/*  EXERCISE 03 - ADD TYPE FILTER UI HERE */}
+<span className="font-medium text-gray-700">Filter by Type:</span>
+<button
+    type="button"
+    className={`px-3 py-1 rounded ${typeFilter.length === 0 ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700'}`}
+    onClick={() => setTypeFilter([])}
+>All</button>
+{availableTypes.map(type => (
     <button
+        key={type}
         type="button"
-        className={`px-3 py-1 rounded ${typeFilter.length === 0 ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700'}`}
-        onClick={() => setTypeFilter([])}
-    >All</button>
-    {availableTypes.map(type => (
-        <button
-            key={type}
-            type="button"
-            className={`px-3 py-1 rounded ${typeFilter.includes(type) ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700'}`}
-            onClick={() => setTypeFilter(typeFilter.includes(type)
-                ? typeFilter.filter(t => t !== type)
-                : [...typeFilter, type])}
-        >
-            {typeDisplayMap[type] || (type.charAt(0).toUpperCase() + type.slice(1))}
-        </button>
-    ))}
-</div>
+        className={`px-3 py-1 rounded ${typeFilter.includes(type) ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700'}`}
+        onClick={() => setTypeFilter(typeFilter.includes(type)
+            ? typeFilter.filter(t => t !== type)
+            : [...typeFilter, type])}
+    >
+        {typeDisplayMap[type] || (type.charAt(0).toUpperCase() + type.slice(1))}
+    </button>
+))}
 ```
 
-:point_right: Add the `TypeFilter` UI element to `src/components/DetailsForm.jsx` to enable the new filtering functionality.
+:point_right: To enable the new filtering functionality make the following changes in `src/components/DetailsForm.jsx`.
+- Add the `TypeFilter` UI element within the `<div id="cards-section">` where indicated by `{/* EXERCISE 03 - LOAD TYPE FILTER ELEMENT HERE */}`. 
+- Set the `Suggestions` UI element to use the filtered suggestions by replacing `solutions={suggestions}` with `solutions={filterSuggestions()}`.
+
+The final code section should now look like this:
 ```javascript
 <div id="cards-section">
+  {/* EXERCISE 03 - LOAD TYPE FILTER ELEMENT HERE */}
   <TypeFilter
     availableTypes={getAvailableDocumentTypes()}
     typeFilter={typeFilter}
@@ -192,8 +204,6 @@ function filterSuggestions() {
 > - **Description:** Error caused after HRSP upgrade that went live on 08th June 2024. Travel documents are not getting posted to accounting. Error in postings. Error message KI145 Activate Business processes in controlling area 9000 in 2024.
 > 
 > </details>
-
-#TODO: ADD GIF
 
 ## Summary
 In this exercise you transformed a generic recommendation feed into a controllable, context-aware assist layer:

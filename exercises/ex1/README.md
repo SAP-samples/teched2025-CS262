@@ -49,10 +49,18 @@ The Solution Recommendation self-service capability that has been introduced abo
   <img src="images/01_02.png" alt="Cloud ALM API exploration notebook" width="300"/>
 </p>
 
+:point_right: Configure a Python kernel to execute the Jupyter notebook by clicking on "**Select Kernel**" in the top-right and select "**Python Environments**" > ":star: **Python 3.13.1**".
+
+*Ignore or dismiss the prompts appearing in the bottom-right corne*r.
+
+![Select Kernel Jupyter](images/01_03.gif)
+
 > [!TIP]
 > To run a Jupyter notebook cell either click on the :arrow_forward: button besides the cell or press *Shift+Enter* while the cell is selected.
 
-:point_right: After running the cells to install and import the required libraries, provide values for the `subject` and `description` input parameters and run the cells to perform the API call.
+:point_right: After running the first two cells to install and import the required libraries, we are now going to call the API to fetch recommendations based on the given problem details. To do that provide values for the `subject` and `description` input parameters and run the third and fourth cells to perform the API call.
+
+![Input parameters cell](images/01_04.png)
 
 > [!TIP]
 > To start with you can try-out the API with the following examples.
@@ -91,7 +99,9 @@ The Solution Recommendation self-service capability that has been introduced abo
 > :bulb: **Relevant knowledge document**: 3428965, 3349929
 > </details>
 
-:point_right: Run the cell to inspect the response with the suggested SAP knowledge content and the key returned fields for each knowledge document.
+:point_right: To view the raw JSON response from the API, run the cell within section **"Inspect the API response"** of the Jupyter notebook.
+
+:point_right: To better inspect a suggested SAP knowledge document along with the key fields returned run the cell in section **"Analyze a single knowledge document"**.
 
 :point_right: **[OPTIONAL]** Experiment with your own issue descriptions and explore the suggested SAP knowledge content.
 

@@ -7,6 +7,6 @@
     "@sap/html5-repo-mock": "^2.1.5"
   },
   "scripts": {
-    "build-itsmFrontend": "cd itsmFrontend && if [ ! -d ${workspaceFolder}/teched2025-cs262/itsmFrontend/node_modules/vite ] && [ ! -d ${workspaceFolder}/teched2025-cs262/node_modules/vite ]; then npm i; fi && npm run build"
+    "build-itsmFrontend": "cd itsmFrontend && if [ ! -d ${workspaceFolder}/teched2025-CS262/itsmFrontend/node_modules/vite ] && [ ! -d ${workspaceFolder}/teched2025-CS262/node_modules/vite ]; then npm i; fi && npm run build"
   }
 }

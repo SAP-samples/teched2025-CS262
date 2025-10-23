@@ -56,7 +56,7 @@ export default function App() {
           </ul>
           <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-indigo-200">
             <li>
-              <a href="https://github.com/SAP-samples/teched2025-cs262" target="_blank" rel="noopener noreferrer" className="flex items-center p-2 text-indigo-700 rounded-lg hover:bg-indigo-100 group">
+              <a href="https://github.com/SAP-samples/teched2025-CS262" target="_blank" rel="noopener noreferrer" className="flex items-center p-2 text-indigo-700 rounded-lg hover:bg-indigo-100 group">
                 <svg className="w-5 h-5 text-indigo-400 transition duration-75 group-hover:text-indigo-700" aria-hidden="true" viewBox="0 0 96.21 96.21" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path d="M48.1 9.62c21.22 0 38.48 17.26 38.48 38.48S69.32 86.58 48.1 86.58 9.62 69.32 9.62 48.1 26.89 9.62 48.1 9.62M48.1 0C21.65 0 0 21.65 0 48.1s21.65 48.1 48.1 48.1 48.1-21.65 48.1-48.1S74.56 0 48.1 0Zm.13 66.14h-.06c-3.32 0-5.98 2.69-5.98 6.01s2.72 6.01 6.04 6.01 6.01-2.69 6.01-6.01-2.69-6.01-6.01-6.01Zm-.13-48.1c-9.95 0-18.04 8.09-18.04 18.04 0 2.66 2.16 4.81 4.81 4.81s4.81-2.15 4.81-4.81c0-4.64 3.78-8.42 8.42-8.42s8.42 3.78 8.42 8.42-3.78 8.42-8.42 8.42c-2.66 0-4.81 2.16-4.81 4.81v6.01c0 2.65 2.15 4.81 4.81 4.81s4.81-2.16 4.81-4.81v-1.94c7.6-2.12 13.23-9.03 13.23-17.31 0-9.95-8.09-18.04-18.04-18.04Z" />
                 </svg>

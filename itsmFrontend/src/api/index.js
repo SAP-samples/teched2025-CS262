@@ -4,7 +4,6 @@ import { fetchEventSource } from '@microsoft/fetch-event-source';
 
 const API_BASE = ...;
 const SOLUTIONS_ENDPOINT = ...;
-const ANSWER_GENERATION_ENDPOINT = ...;
 
 export async function searchSolutions(...) {
   const payload = ...;

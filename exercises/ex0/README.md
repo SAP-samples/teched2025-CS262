@@ -39,10 +39,15 @@ To prepare the building blocks for this workshop, you'll need to clone this repo
 
 #### Create a Dev Space in the SAP Business Application Studio
 
-:point_right: Via this [link](https://cs262-xa6ax9xc.eu10cf.applicationstudio.cloud.sap/index.html) to the SAP Business Application Studio, create a new Dev Space, choosing the **Basic** type, ensure to select **HTML5 Runner** and **Python Tools**.
+:point_right: Access the SAP Business Application Studio via:
+```text
+https://cs262-xa6ax9xc.eu10cf.applicationstudio.cloud.sap/index.html
+```
 
 > [!IMPORTANT]
 > Sign in with **tdct3ched1.accounts.ondemand.com** identity provider.
+
+:point_right: In SAP Business Application Studio, create a new Dev Space, choosing the **Basic** type, ensure to select **HTML5 Runner** and **Python Tools**.
 
 ![Setting_up_a_dev_space](images/00_01.png)
 
@@ -72,8 +77,12 @@ You'll work primarily within the `itsmFrontend` directory of this repo, which co
 npm install
 ```
 
-You can double-check what's installed with `npm list`, which should show you something similar to this:
+:point_right: You can then double-check what's installed with:
+```bash
+npm list
+```
 
+The output should show you something similar to this:
 ```text
 app@0.1.0 /home/user/projects/teched2025-CS262/itsmFrontend
 ├── @microsoft/fetch-event-source@2.0.1

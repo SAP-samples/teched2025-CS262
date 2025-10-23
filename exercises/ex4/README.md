@@ -8,7 +8,7 @@ In this exercise, you integrate the Answer Generation API to turn a problem desc
 
 - [API at a glance](#api-at-a-glance)
 - [Call the Answer Generation API from Jupyter notebook](#call-the-answer-generation-api-from-jupyter-notebook)
-- [Wire the frontend call](#wire-the-frontend-call)
+- [Wire the frontend call to Answer Generation API](#wire-the-frontend-call-to-answer-generation-api)
 - [Render the generated answer in the UI](#render-the-generated-answer-in-the-ui)
 - [Summary](#summary)
 - [Further reading](#further-reading)
@@ -26,7 +26,7 @@ Content-Type: application/json
 Accept: text/event-stream
 ```
 - **Request body:**
-```json
+```
 {
   "reporter": Reporter of the issue (S-User),
   "subject"*: Subject of the issue (short description),
@@ -72,7 +72,7 @@ data: [
 > :bulb: **Relevant knowledge document**:
 > </details>
 
-## Wire the frontend call
+## Wire the frontend call to Answer Generation API
 
 :point_right: Start by implementing the HTTP request to the Answer Generation API in `src/api/index.js`.
 
@@ -81,7 +81,7 @@ data: [
 const ANSWER_GENERATION_ENDPOINT = `/${API_BASE}/http/supportcases/recommendations/solutions/rag`;
 ```
 
-- Complete the implementation of the `generateAnswer` function to perform an Event Source request and parse the incoming events' data.
+- Complete the implementation of the `generateAnswer()` function to perform an Event Source request and parse the incoming events' data. Define the *function signature*, *payload variable* and `onmessage()` function.
 ```javascript
 export async function generateAnswer({ subject, description, component, onData, onError, onComplete }) {
   const payload = { subject, description, component };
@@ -96,7 +96,7 @@ export async function generateAnswer({ subject, description, component, onData, 
 }
 ```
 
-:point_right: Add the logic to perform the request to the Answer Generation API from the `DetailsForm.jsx` UI component.
+:point_right: In `DetailsForm.jsx`, implement the logic within the `handleStreamAPI()` function to enable calling the Answer Generation API from the UI.
 ```javascript
   async function handleStreamAPI() {
     setCardsCollapsed(true);
@@ -140,8 +140,13 @@ export async function generateAnswer({ subject, description, component, onData, 
 
 ## Render the generated answer in the UI
 
-:point_right: Provide a button within the "Suggested Knowledge" section in `src/components/DetailsForm.jsx` to trigger the Answer Generation API and retrieve an answer for the given problem description.
+Now, let’s build the part of the UI that shows the generated answer. The final result will look like this:
+
+![Exercise 04 - Answer Generation UI](images/04_01.png)
+
+:point_right: Implement a button within the "Suggested Knowledge" section in `src/components/DetailsForm.jsx` to trigger the Answer Generation API and retrieve an answer for the given problem description.
 ```javascript
+{/* EXERCISE 04 - ADD GENEREATE BUTTON HERE */}
 <button
   type="button"
   className="flex items-center gap-2 px-3 py-1 rounded-lg bg-indigo-700 text-white hover:bg-indigo-800 shadow transition text-sm"
@@ -155,11 +160,13 @@ export async function generateAnswer({ subject, description, component, onData, 
 </button>
 ```
 
-:point_right: Take a look at the UI component that displays the generated answer in `src/components/GeneratedAnswer.jsx`.
+:point_right: We already implemented the UI component in `src/components/GeneratedAnswer.jsx` that displays the generated answer. Take a look at it to understand how it is implemented.
 
-:point_right: Add the `GeneratedAnswer` component in the "Suggested Knowledge" section to display the answer text if the "Generate" button has been clicked.
+:point_right: Go back to `src/components/DetailsForm.jsx` and add the `GeneratedAnswer` component where marked by `{/* EXERCISE 04 - ADD ANSWER DISPLAY HERE */}` in the lower section of the file.
+
+This will display the answer text once the "Generate" button is clicked.
 ```javascript
-{/* Always show answer box and sources if showAnswer */}
+{/* EXERCISE 04 - ADD ANSWER DISPLAY HERE */}
 {showAnswer && (
   <GeneratedAnswer
     loading={loadingStream}
@@ -168,9 +175,46 @@ export async function generateAnswer({ subject, description, component, onData, 
   />
 )}
 ```
+:point_right: In addition to the generated answer, we want to keep displaying the SAP knowledge documents retrieved by the Solution Recommendation API. To keep the UI organized, the documents will be placed within a collapsible area.
 
-:point_right: Move the knowledge document UI cards and respective filters in a collapsible area below the generated answer. This allows you to compare the knowledge documents with the generated answer.
+- Start by adding a collapsible area below the generated answer element as indicated by `{/* EXERCISE 04 - ADD COLLAPSIBLE AREA HERE */}`.
 ```javascript
+{/* EXERCISE 04 - ADD COLLAPSIBLE AREA HERE */}
+{/* Collapsible document cards & filters area */}
+<div className="mt-6">
+  {showAnswer && (
+    <button
+      type="button"
+      className="flex items-center gap-1 px-2 py-1 rounded bg-transparent text-gray-500 hover:bg-gray-100 hover:text-indigo-600 mb-2 transition"
+      onClick={() => setCardsCollapsed(v => !v)}
+      aria-expanded={!cardsCollapsed}
+      aria-controls="cards-section"
+    >
+      <svg className={`w-4 h-4 transform transition-transform ${cardsCollapsed ? '' : 'rotate-180'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+      <span className="text-sm">{cardsCollapsed ? 'Show' : 'Hide'} Knowledge Documents & Filters</span>
+    </button>
+  )}
+</div>
+```
+
+- Set the `className` of `<div id="cards-section">` to be hidden when the area is collapsed.
+```javascript
+<div id="cards-section" className={cardsCollapsed ? 'hidden' : ''}>
+  <TypeFilter
+    availableTypes={getAvailableDocumentTypes()}
+    typeFilter={typeFilter}
+    setTypeFilter={setTypeFilter}
+    typeDisplayMap={typeDisplayMap}
+  />
+  <Suggestions solutions={filterSuggestions()} loading={loadingSug} />
+</div>
+```
+
+- Finally, move the entire `div id="cards-section"` containing the knowledge documents and the filters inside the previously created collapsible area.
+
+The resulting code section should look like this:
+```javascript
+{/* EXERCISE 04 - ADD COLLAPSIBLE AREA HERE */}
 {/* Collapsible document cards & filters area */}
 <div className="mt-6">
   {showAnswer && (
@@ -197,12 +241,10 @@ export async function generateAnswer({ subject, description, component, onData, 
 </div>
 ```
 
-:point_right: Test the generative functionality in the ITSM demo application by providing the problem details and clicking on the Generate button.
+:point_right: Test the generative functionality in the ITSM demo application by providing the problem details and clicking on the **Generate** button.
 
 > [!TIP]
 > Experiment with your own input parameters or use the example [above](#call-the-answer-generation-api-from-jupyter-notebook).
-
-#TODO SCREENSHOT OF RESULT
 
 ## Summary
 

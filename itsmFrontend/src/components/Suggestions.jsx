@@ -10,10 +10,10 @@ export default function Suggestions({ solutions, loading }) {
           <div key={s.id + s.url} className="bg-white border border-indigo-100 rounded-xl shadow-md p-6 flex flex-col gap-3">
             <div className="flex items-center gap-2 mb-2">
               {/* EXERCISE 02 - ADD BEST MATCH TAG HERE */}
-              {/* EXERCISE 02 - ADD SOLUTION TYPE HERE */}
+              {/* EXERCISE 02 - ADD DOCUMENT TYPE HERE */}
             </div>
-            {/* EXERCISE 02 - ADD SOLUTION ID AND TITLE HERE */}
-            {/* EXERCISE 02 - ADD SOLUTION PREVIEW HERE */}
+            {/* EXERCISE 02 - ADD DOCUMENT ID AND TITLE HERE */}
+            {/* EXERCISE 02 - ADD DOCUMENT PREVIEW HERE */}
           </div>
         ))
       ) : (

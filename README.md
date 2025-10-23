@@ -5,13 +5,15 @@
 This repository contains the material for the SAP TechEd 2025 session called CS262 - Supercharge your stack: Embed SAP’s intelligent support capabilities.  
 
 ## Overview
-This Hands-On Workshop walks you through embedding SAP Cloud ALM self-service support capabilities directly into an ITSM-style application.
+This Hands-On Workshop walks you through embedding SAP Cloud ALM self-service support capabilities directly into an ITSM-style[^1] application.
 
 You will progressively move from raw API exploration to an integrated, guided support experience: discovering how an issue description yields AI-ranked SAP knowledge, wiring those recommendations into a front‑end workflow, refining relevance with optional power-user context and filtering, and finally generating a concise, cited resolution summary via generative AI.
 
 Across the exercises you become comfortable invoking the Solution Recommendation API, interpreting and presenting its output, enriching queries with additional signals, and layering a generative answer on top for faster issue triage.
 
 The result is a practical blueprint for surfacing up-to-date SAP knowledge and actionable guidance inside your own support processes, empowering users to self-service earlier and experts to drill down when needed.
+
+[^1]: ITSM - IT Service Management.
 
 ## Requirements
 

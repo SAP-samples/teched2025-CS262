@@ -68,12 +68,9 @@ export default function DetailsForm() {
         id="knowledge-form"
       >
 
-        {/* EXERCISE 02 - FORM FIELDS HERE */}
-        <FormField>
-          ...
-        </FormField>
+        {/* EXERCISE 02 - ADD FORM FIELDS HERE */}
 
-        {/* EXERCISE 03- ADD ADVANCED SECTION HERE */}
+        {/* EXERCISE 03 - ADD ADVANCED SECTION HERE */}
 
         {/* Suggested Knowledge Section */}
         <div className="mt-8">

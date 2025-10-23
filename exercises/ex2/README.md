@@ -13,7 +13,7 @@ In this exercise, you'll plug the SAP Cloud ALM Solution Recommendation API into
 
 ## Get familiar with the demo ITSM application
 
-The source code for the demo ITSM application introduced [here](exercises/ex0/README.md) is located in the `itsmFrontend` directory.
+The source code for the demo ITSM application introduced in [Exercise 00](exercises/ex0/README.md) is located in the `itsmFrontend` directory.
 
 The source files relevant for the purpose of this workshop are:
 - `src/pages/SAPSelfService.jsx`: main UI page that hosts the SAP self-service content.
@@ -21,25 +21,12 @@ The source files relevant for the purpose of this workshop are:
 - `src/components/Suggestions.jsx`: defines how a recommended SAP knowledge document is rendered.
 - `src/api/index.js`: API layer that performs the requests to the Cloud ALM API.
 
-:point_right: Switch to your SAP Business Application Studio Dev Space and open a new terminal at the `itsmFrontend` directory.
-
-:point_right: Build the application and enable automatic rebuild on file changes by executing `npm run watch` in the terminal.
-
-![BAS Dev Space Terminal](images/02_02.gif)
-
-:point_right: Open the **Run Configurations** pane from the left-side toolbar and run the pre-configured **techedCS262** configuration.
-
-Make sure the Cloud_ALM_API BTP destination is bound as a Data Source.
-
-![Run Configurations](images/02_03.gif)
-
-:point_right: Access the application on port 6004 once it is ready via the bottom-right prompt.
-
-> [!NOTE]
-> If the prompt "Open in a New Tab" does not appear, manually visit the application at `https://port6004-workspaces-<BAS-Dev-Space-ID\>.eu10.applicationstudio.cloud.sap/itsmFrontend/index.html`.
+:point_right: Switch to your SAP Business Application Studio Dev Space to view the source code files and implement the changes explained in the upcoming sections.
 
 ## Integrate the Self-Service Cloud ALM APIs
-In this section, you will integrate the SAP knowledge in the demo ITSM application and make it available for consumption.
+In this section, you will integrate the SAP knowledge in the demo ITSM application and make it available for consumption. By the end of this exercise, your app’s interface should resemble the design shown below:
+
+![Exercise 02 - Final UI](images/02_05.png)
 
 > [!NOTE]
 > :open_book: The UX concepts you will see here are inspired by our dedicated guidelines, designed to help you get the most value and best experience from the self-service capabilities.
@@ -76,8 +63,9 @@ export async function searchSolutions(subject, description) {
 
 :point_right: Add the UI elements in `src/components/DetailsForm.jsx` to collect the input parameters, as defined above, from the users.
 
-- Add a form field for the brief issue summary (`subject`).
+- Insert a form field for the brief issue summary (`subject`) inside the HTML `<form>` in the lower section of the file (insert where marked by `{/* EXERCISE 02 - ADD FORM FIELDS HERE */}`).
 ```javascript
+  {/* EXERCISE 02 - ADD FORM FIELDS HERE */}
   <FormField label="Short Title">
     <input
       value={form.subject}
@@ -92,7 +80,7 @@ export async function searchSolutions(subject, description) {
   </FormField>
 ```
 
-- Add a form field for the detailed problem description (`description`).
+- Insert a second form field below the other one for the detailed problem description (`description`).
 ```javascript
   <FormField label="Problem Description">
     <textarea
@@ -109,7 +97,7 @@ export async function searchSolutions(subject, description) {
   </FormField>
 ```
 
-- Complete the logic to perform the request to the Solution Recommendation API. A request should be triggered when one of the input fields is changed *and* unfocused.
+- Complete the logic in the `handleFieldBlur()` function to perform the request to the Solution Recommendation API. A request should be triggered when one of the input fields is changed *and* unfocused.
 ```javascript
   function handleFieldBlur() {
     // Only search if any field has changed since last search
@@ -141,8 +129,9 @@ export async function searchSolutions(subject, description) {
 
 :point_right: Implement the UI component in `src/components/Suggestions.jsx` to display the suggested SAP knowledge documents. The SAP knowledge documents are arranged in a 2x3 grid of cards.
 
-- Display the document ID along with the document title in each card and add a link to the document's source.
+- Display the document ID along with the document title in each card and add a link to the document's source. Add the code where indicated by `{/* EXERCISE 02 - ADD DOCUMENT ID AND TITLE HERE */}`.
 ```javascript
+{/* EXERCISE 02 - ADD DOCUMENT ID AND TITLE HERE */}
 <a
   href={s.url}
   target="_blank"
@@ -155,6 +144,7 @@ export async function searchSolutions(subject, description) {
 
 - Display a short preview of the document's content.
 ```javascript
+{/* EXERCISE 02 - ADD DOCUMENT PREVIEW HERE */}
 <p className="text-sm text-gray-700 mt-2 break-words overflow-hidden" style={{ wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: '100%' }}>
   {s.summary && s.summary.length > 250 ? s.summary.slice(0, 250) + "..." : s.summary}
 </p>
@@ -162,28 +152,46 @@ export async function searchSolutions(subject, description) {
 
 - Use the `rank` field to assign a "Best Match" tag to the highest ranked document.
 ```javascript
-<div className="flex items-center gap-2 mb-2">
-  {s.rank == 1 && (
-    <span className="px-2 py-0.5 rounded bg-green-100 text-green-700 text-xs font-semibold">Best Match</span>
-  )}
-</div>
+{/* EXERCISE 02 - ADD BEST MATCH TAG HERE */}
+{s.rank == 1 && (
+  <span className="px-2 py-0.5 rounded bg-green-100 text-green-700 text-xs font-semibold">Best Match</span>
+)}
 ```
 
-- Display the SAP knowledge document's type.
+- Display the SAP knowledge document's type. Add the code right below the "Best Match" tag at the indicated place.
 ```javascript
-<div className="flex items-center gap-2 mb-2">
-  ...
-  <span className="ml-auto px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 text-xs font-semibold">{s.type}</span>
-</div>
+{/* EXERCISE 02 - ADD DOCUMENT TYPE HERE */}
+<span className="ml-auto px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 text-xs font-semibold">{s.type}</span>
 ```
 
-:point_right: Switch to your ITSM demo application and refresh the page to test your changes.
-If the command `npm run watch` is not running in the terminal anymore, startup your application by repeating the steps in [this section](#get-familiar-with-the-demo-itsm-application).
+:point_right: Now you are ready to build, run and test the application. Start by opening a terminal at the `itsmFrontend` directory.
+
+:point_right: Build the application and enable automatic rebuild on file changes by executing the following command in the terminal:
+```bash
+npm run watch
+```
+
+![BAS Dev Space Terminal](images/02_02.gif)
+
+:point_right: Open the **Run Configurations** pane from the left-side toolbar and run the pre-configured **techedCS262** configuration.
+
+Make sure the Cloud_ALM_API BTP destination is bound as a Data Source.
+
+![Run Configurations](images/02_03.gif)
+
+:point_right: Access the application's UI on port 6004 once it is ready via the prompt appearing in the bottom-right of the screen.
+
+> [!NOTE]
+> If the prompt "Open in a New Tab" does not appear, manually visit the application at `https://port6004-workspaces-<BAS-Dev-Space-ID\>.eu10.applicationstudio.cloud.sap/itsmFrontend/index.html`.
+> 
+> You can find your **BAS-Dev-Space-ID** in the URL bar:
+> 
+> ![BAS Dev Space ID](images/02_04.png)
+
+:point_right: Navigate to the **SAP Self-Service** tab on the left sidebar and test the application by providing problem details in the form fields.
 
 > [!TIP]
 > Experiment with your own input parameters or reuse the examples provided in [Exercise 01](../ex1/README.md#try-out-the-solution-recommendation-api).
-
-GIF OF WEBSITE WITH TRYING OUT THE PAGE
 
 ## Summary
 
