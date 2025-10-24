@@ -15,7 +15,7 @@ In this exercise, you'll explore the SAP Cloud ALM Solution Recommendation API i
 - SAP Cloud ALM Self-Service leverages AI to automatically suggest the most relevant knowledge resources when a user describes an issue.
 - The system analyzes the described problem, then uses semantic search and ranking models to identify and prioritize useful content from SAP's extensive knowledge base.
 
-![AI-Powered Self-Service Recommendations](./images/ai-self-service-recommendations.png)
+![AI-Powered Self-Service Recommendations](./images/ai-self-service-recommendations.jpg)
 
 #### Key Features  <!-- omit in toc -->
 :robot: **AI-driven relevance**: Uses state-of-the-art AI technology to deliver the latest SAP knowledge content to users.
