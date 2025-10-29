@@ -15,10 +15,6 @@ The result is a practical blueprint for surfacing up-to-date SAP knowledge and a
 
 [^1]: ITSM - IT Service Management.
 
-## Requirements
-
-The requirements to follow the exercises in this repository are...
-
 ## Exercises
 Be aware that some of the exercises are dependent on each other and must be completed in the sequence provided below.
 
