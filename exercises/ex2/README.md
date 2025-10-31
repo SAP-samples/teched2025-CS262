@@ -28,9 +28,6 @@ In this section, you will integrate the SAP knowledge in the demo ITSM applicati
 
 ![Exercise 02 - Final UI](images/02_05.png)
 
-> [!NOTE]
-> :open_book: The UX concepts you will see here are inspired by our dedicated guidelines, designed to help you get the most value and best experience from the self-service capabilities.
-
 :point_right: Start by implementing the HTTP request to the Solution Recommendation API in `src/api/index.js`.
 
 - Define the Solution Recommendation API endpoint to be called.
