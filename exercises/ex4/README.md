@@ -65,12 +65,13 @@ data: [
 > <summary>📝  Example 1</summary>
 > </br>
 > 
-> - **Subject:**
-> - **Description:**
-> - **Component:**
-> 
-> :bulb: **Relevant knowledge document**:
+> - **Subject:** API for form launch
+> - **Description:** In SuccessFactors system, we wanted to autolaunch the PM forms using CPI. So, just wanted to check if it is possible to autolaunch the form using CPI. If yes, kindly share the api for the same.
+> - **Component:** LOD-DF-INT-CON
+> - **Additional information:** Got error 403 when creating a form using OData API function import and seems we do not have permission to create performance review form for subject id. Got 500 error when launching forms via OData API.
 > </details>
+>
+> For further examples refer to those mentioned in [Exercise 01](/exercises/ex1/README.md#try-out-the-solution-recommendation-api) and [Exercise 03](/exercises/ex3/README.md#filter-the-recommendations-based-on-specific-business-needs).
 
 ## Wire the frontend call to Answer Generation API
 
