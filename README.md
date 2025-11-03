@@ -1,3 +1,5 @@
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/teched2025-CS262)](https://api.reuse.software/info/github.com/SAP-samples/teched2025-CS262)
+
 # CS262 - Supercharge your stack: Embed SAP’s intelligent support capabilities
 
 ## Description
