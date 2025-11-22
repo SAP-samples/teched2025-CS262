@@ -25,6 +25,7 @@ Be aware that some of the exercises are dependent on each other and must be comp
 - [Exercise 02 - Integrate SAP knowledge via the SAP Cloud ALM APIs](exercises/ex2/README.md)
 - [Exercise 03 - Optimize the use of SAP knowledge recommendations](exercises/ex3/README.md)
 - [Exercise 04 - Generate actionable SAP knowledge summaries with Generative AI](exercises/ex4/README.md)
+- [Exercise 05 - Customize AI-generated answers with custom prompt templates](exercises/ex5/README.md)
 
 > [!NOTE]
 > For this Hands-on Workshop you are provided with a subaccount on SAP BTP. The subaccount is only available for the duration of this Hands-on Workshop.
