@@ -161,6 +161,7 @@ export default function DetailsForm() {
           />
           {errors.description && <span className="text-red-600 text-xs">{errors.description}</span>}
         </FormField>
+        {/* EXERCISE 05 - ADD PROMPT FORM FIELD HERE */}
 
         {/* EXERCISE 03 - ADD ADVANCED SECTION HERE */}
         <div className="border rounded-lg mt-6">
