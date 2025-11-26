@@ -165,6 +165,12 @@ export async function generateAnswer({ subject, description, component, customPr
     });
 ```
 
+### Render the custom prompt input in the UI
+
+The final result will look like this:
+
+![Exercise 05 - Custom Prompt UI](images/05_01.png)
+
 ## Summary
 
 In this exercise, you enhanced the Answer Generation capability with custom prompt templates:
