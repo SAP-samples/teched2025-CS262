@@ -59,17 +59,6 @@ https://cs262-xa6ax9xc.eu10cf.applicationstudio.cloud.sap/index.html
 
 Your Dev Space will reload after the repository is cloned.
 
-#### Checkout the `dev` branch
-
-:point_right: Checkout the `dev` branch of the repo by:
-1. Opening the terminal (You could do so via the tab View > Terminal)
-2. Switching branch by running the following command in the terminal:
-```shell
-git checkout dev
-```
-
-![Opening the terminal](images/00_04.png)
-
 ## Navigate to the project folder
 
 To work through the exercises make sure you are in the project folder at `/home/user/projects/teched2025-CS262/itsmFrontend/`.
